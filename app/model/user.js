@@ -38,10 +38,10 @@ module.exports = app => {
     });
   };
   /**
-                                                                                 * 哈希密码 Hooks
-                                                                                 * @param {User} user 用户实例
-                                                                                 * @return {void}
-                                                                                 */
+                                                                                   * 哈希密码 Hooks
+                                                                                   * @param {User} user 用户实例
+                                                                                   * @return {void}
+                                                                                   */
   async function hasPwd(user) {
     if (!user.changed('password')) {
       return;
@@ -50,11 +50,11 @@ module.exports = app => {
   }
   User.beforeSave(hasPwd);
   /**
-                                 * 用户登录方法
-                                 * @param {string} email 邮箱
-                                 * @param {string} password 密码
-                                 * @return {(user|boolean)} 登录成功的用户
-                                 */
+                                   * 用户登录方法
+                                   * @param {string} email 邮箱
+                                   * @param {string} password 密码
+                                   * @return {(user|boolean)} 登录成功的用户
+                                   */
   User.Auth = async function(email, password) {
     const user = await this.findOne({
       where: {
