@@ -3,6 +3,6 @@
 // had enabled by egg
 // exports.static = true;
 exports.sequelize = {
-  enabled: false,
+  enabled: true,
   package: 'egg-sequelize',
 };

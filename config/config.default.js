@@ -15,11 +15,11 @@ module.exports = appInfo => {
     },
   };
   // sequelize
-  // config.sequelize = {
-  //   dialect: 'mysql',
-  //   host: '127.0.0.1',
-  //   prot: 3306,
-  //   database: 'miao-dev',
-  // };
+  config.sequelize = {
+    dialect: 'mysql',
+    host: '127.0.0.1',
+    prot: 3306,
+    database: 'miao-dev',
+  };
   return config;
 };
