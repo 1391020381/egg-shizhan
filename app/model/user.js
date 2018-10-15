@@ -1,5 +1,4 @@
 'use strict';
-const bcrypt = require('bcrypt');
 module.exports = app => {
   const { INTEGER, STRING, TINYINT } = app.Sequelize;
   const User = app.model.define('User', {
@@ -35,42 +34,6 @@ module.exports = app => {
     app.model.User.hasOne(app.model.Invitation, {
       foreignKey: 'use_user_id',
       as: 'my_used_invitaion',
-    });
-  };
-  /**
-                                                                                   * 哈希密码 Hooks
-                                                                                   * @param {User} user 用户实例
-                                                                                   * @return {void}
-                                                                                   */
-  async function hasPwd(user) {
-    if (!user.changed('password')) {
-      return;
-    }
-    user.password = await bcrypt.hash(user.password, 10);
-  }
-  User.beforeSave(hasPwd);
-  /**
-                                   * 用户登录方法
-                                   * @param {string} email 邮箱
-                                   * @param {string} password 密码
-                                   * @return {(user|boolean)} 登录成功的用户
-                                   */
-  User.Auth = async function(email, password) {
-    const user = await this.findOne({
-      where: {
-        email,
-      },
-    });
-    if (await bcrypt.compare(password, user.password)) {
-      return user;
-    }
-    return false;
-  };
-  User.findByEmail = async function(email) {
-    return await this.findOne({
-      where: {
-        email,
-      },
     });
   };
   return User;
