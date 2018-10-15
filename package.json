@@ -1,44 +1,46 @@
 {
-  "name": "egg-shizhan",
+  "name": "shizhan",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "dependencies": {
-    "egg": "2.10.0",
-    "egg-sequelize": "^4.0.2",
-    "egg-scripts": "^2.5.0"
+    "egg": "^2.2.1",
+    "egg-scripts": "^2.5.0",
+    "egg-sequelize": "^4.1.0",
+    "mysql2": "^1.6.1"
   },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.0.0",
-    "egg-bin": "^4.3.7",
-    "egg-mock": "^3.19.2",
-    "eslint": "^4.18.1",
-    "eslint-config-egg": "^7.0.0",
-    "factory-girl": "^5.0.2",
-    "sequelize-cli": "^4.0.0"
+    "egg-bin": "^4.3.5",
+    "egg-ci": "^1.8.0",
+    "egg-mock": "^3.14.0",
+    "eslint": "^4.11.0",
+    "eslint-config-egg": "^6.0.0",
+    "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.9.0"
   },
   "scripts": {
-    "autod": "autod",
-    "lint": "eslint .",
-    "test": "egg-bin test",
+    "start": "egg-scripts start --daemon --title=egg-server-shizhan",
+    "stop": "egg-scripts stop --title=egg-server-shizhan",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
     "cov": "egg-bin cov",
-    "ci": "npm run lint && NODE_ENV=test npx sequelize db:migrate && npm run cov"
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
   },
   "ci": {
     "version": "8"
   },
-  "eslintIgnore": [ "coverage", "dist" ],
   "repository": {
     "type": "git",
     "url": ""
   },
-  "files": [
-    "lib",
-    "index.js"
-  ],
   "author": "",
-  "private": true
+  "license": "MIT"
 }
