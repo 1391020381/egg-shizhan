@@ -1,7 +1,5 @@
 # shizhan
 
-
-* [ramda线上测试](https://ramdajs.com/repl/?v=0.23.0)
 ## QuickStart
 
 <!-- add docs here for user -->
