@@ -1,6 +1,6 @@
 'use strict';
 module.exports = app => {
-  const { INTEGER, STRING } = app.Seqelize;
+  const { INTEGER, STRING } = app.Sequelize;
   const Image = app.model.define('Image', {
     title: STRING(40),
     description: STRING(255),

@@ -24,7 +24,7 @@ module.exports = app => {
     app.model.Invitation.belongsTo(app.model.User, {
       foreignKey: 'user_id',
     });
-    app.model_User.hasMany(app.model.Invitation, {
+    app.model.User.hasMany(app.model.Invitation, {
       foreignKey: 'user_id',
     });
     app.model.Invitation.belongsTo(app.model.User, {
