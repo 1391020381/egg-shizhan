@@ -2,7 +2,7 @@
 module.exports = app => {
   const { STRING, INTEGER } = app.Sequelize;
   const ImageComment = app.model.define('ImageComment', {
-    id: INTEGER,
+    // id: INTEGER,
     image_id: INTEGER,
     content: STRING(255),
     parent_id: INTEGER,

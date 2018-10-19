@@ -2,7 +2,7 @@
 module.exports = app => {
   const { INTEGER, TEXT } = app.Sequelize;
   const PostComment = app.model.define('PostComment', {
-    id: INTEGER,
+    // id: INTEGER,
     post_id: INTEGER,
     content: TEXT,
     parent_id: INTEGER,
