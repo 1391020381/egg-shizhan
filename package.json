@@ -5,8 +5,11 @@
   "private": true,
   "dependencies": {
     "egg": "^2.2.1",
+    "egg-msg-flash": "^1.0.1",
+    "egg-passport": "^2.0.1",
     "egg-scripts": "^2.5.0",
     "egg-sequelize": "^4.1.0",
+    "egg-y-validator": "^1.1.7",
     "mysql2": "^1.6.1",
     "ramda": "^0.25.0",
     "uuid": "^3.3.2"
