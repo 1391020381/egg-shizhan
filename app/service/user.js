@@ -48,4 +48,5 @@ class User extends S {
 //     this.ctx.assert(user, 401, '没有找到该用户');
 //   }
 }
+
 module.exports = User;
