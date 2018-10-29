@@ -6,5 +6,13 @@
       "error",
       "windows"
     ]
+  },
+  "globals": {
+    "use": true,
+    "Controller": true,
+    "C": true,
+    "check": true,
+    "S": true,
+    "Service": true
   }
 }
