@@ -1,5 +1,5 @@
 'use strict';
-const R = require('ramda');
+// const R = require('ramda');
 class User extends S {
   constructor(ctx) {
     super(ctx);
@@ -48,3 +48,4 @@ class User extends S {
 //     this.ctx.assert(user, 401, '没有找到该用户');
 //   }
 }
+module.exports = User;
