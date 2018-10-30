@@ -1,5 +1,5 @@
 'use strict';
-// const R = require('ramda');
+const R = require('ramda');
 class User extends S {
   constructor(ctx) {
     super(ctx);
@@ -34,19 +34,51 @@ class User extends S {
     });
     return Promise.all(PromiseInvitation);
   }
-//   /**
-//    * ? 待考虑
-//    * *将 Code 邀请码给 user_id 使用，并为 user_id 生成邀请码
-//    * @param {string} code 验证码
-//    * @param {number} user_id 用户 ID
-//    * @return {{user: User, invitations: Invitation[]}} 用户与生成的邀请码
-//    * @memberof User
-//    */
-//   async invitationToUser(code, user_id) {
-//     const invitation = await this.checkInvitation(code);
-//     const user = await this._User.findById(user_id);
-//     this.ctx.assert(user, 401, '没有找到该用户');
-//   }
+  /**
+   * ? 待考虑
+   * *将 Code 邀请码给 user_id 使用，并为 user_id 生成邀请码
+   * @param {string} code 验证码
+   * @param {number} user_id 用户 ID
+   * @return {{user: User, invitations: Invitation[]}} 用户与生成的邀请码
+   * @memberof User
+   */
+  async invitationToUser(code, user_id) {
+    const invitation = await this.checkInvitation(code);
+    const user = await this._User.findById(user_id);
+    this.ctx.assert(user, 401, '没有找到该用户');
+    if (!user) {
+      this.ctx.throw(401, 'user', '没有该用户');
+    }
+    invitation.use_user_id = user.id;
+    invitation.use_username = user.username;
+    invitation.save();
+    const invitations = await this.generatorInvitation(user_id, 5);
+    return { user, invitations };
+  }
+  async signIn() {
+    const { email, password } = this.ct.requrest.body;
+    const user = await this._User.Auth(email, password);
+    this.ct.assert(user, 401, '没有找到该用户');
+  }
+  /**
+   * * 注册逻辑
+   * TODO:通知邀请码所有者,user.id成功使用了你的激活码
+   * TODO:向用户邮箱发送邮验证件
+   * @return {Object} 注册成功的用户与生成的邀请码
+   * @memberof {User}
+   */
+  async signUp() {
+    const body = this.ctx.request.body;
+    const invitation = await this.checkInvitation(body.code);
+    const user = await this._User.create(R.pick([ 'username', 'password', 'email' ], body));
+    /* eslint-disable no-proto*/
+    console.dir(user.__proto__);
+    console.dir(invitation.__proto__);
+    invitation.use_usename = user.username;
+    await invitation.save();
+    const generator_invitation = await this.generatorInvitation(user.id, 5);
+    return { user, generator_invitation };
+  }
 }
 
 module.exports = User;
