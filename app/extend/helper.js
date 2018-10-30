@@ -1,6 +1,5 @@
 'use strict';
-// const R = require('ramda');
-
+//   const R = require('ramda');
 module.exports = {
   where(obj, ...args) {
     return Object.assign({
