@@ -11,7 +11,9 @@ class User extends C {
   }
   async signUp() {
     await this.ctx.verify('user.signup', 'body');
-    this.ctx.body = '注册';
+    const json = await this.ctx.service.user.signUp();
+    this.ctx.body = json;
+    // this.ctx.body = '注册';
   }
 }
 
