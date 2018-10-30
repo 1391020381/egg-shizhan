@@ -74,6 +74,7 @@ class User extends S {
     /* eslint-disable no-proto*/
     console.dir(user.__proto__);
     console.dir(invitation.__proto__);
+    invitation.use_user_id = user.id;
     invitation.use_usename = user.username;
     await invitation.save();
     const generator_invitation = await this.generatorInvitation(user.id, 5);
