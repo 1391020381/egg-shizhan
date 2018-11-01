@@ -1,6 +1,6 @@
 'use strict';
-const { globalBaseInitial } = require('./init.js');
+const { globalBaseInitial, globalLogger } = require('./init.js');
 
 globalBaseInitial(__dirname);
 
-module.exports = app => { console.log(app); };
+module.exports = app => { globalLogger(app); };
